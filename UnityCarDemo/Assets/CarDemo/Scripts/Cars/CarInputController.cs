@@ -47,6 +47,7 @@ namespace CarDemo
                 _carPhysicsController.DeceleratingCar = false;
                 _carPhysicsController.GoForward();
             }
+
             if (_currentReverse)
             {
                 CancelInvoke("DecelerateCar");
