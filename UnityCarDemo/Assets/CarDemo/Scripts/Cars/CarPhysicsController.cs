@@ -83,9 +83,9 @@ namespace CarDemo
         [Required("Rear right collider required")]
         public WheelCollider rearRightCollider;
 
-        /*
-        Car Simulation 
-        */
+        //
+        // Car Simulation 
+        //
         private float _carSpeed;
         private bool _isDrifting;
         private bool _isTractionLocked;
