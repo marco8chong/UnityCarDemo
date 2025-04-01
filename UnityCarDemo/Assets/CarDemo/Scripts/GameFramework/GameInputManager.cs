@@ -1,23 +1,24 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace CarDemo
 {
     public class GameInputManager : GameDirectorService
     {
         [SerializeField]
-        private KeyCode _forwardKey = KeyCode.W;
+        private Key _forwardKey = Key.W;
 
         [SerializeField]
-        private KeyCode _reverseKey = KeyCode.S;
+        private Key _reverseKey = Key.S;
 
         [SerializeField]
-        private KeyCode _leftKey = KeyCode.A;
+        private Key _leftKey = Key.A;
 
         [SerializeField]
-        private KeyCode _rightKey = KeyCode.D;
+        private Key _rightKey = Key.D;
 
         [SerializeField]
-        private KeyCode _handbrakeKey = KeyCode.Space;
+        private Key _handbrakeKey = Key.Space;
 
         bool _forwardTouch = false;
         bool _reverseTouch = false;
@@ -27,27 +28,27 @@ namespace CarDemo
 
         public bool GetForward()
         {
-            return Input.GetKey(_forwardKey) || _forwardTouch;
+            return Keyboard.current[_forwardKey].isPressed || _forwardTouch;
         }
 
         public bool GetReverse()
         {
-            return Input.GetKey(_reverseKey) || _reverseTouch;
+            return Keyboard.current[_reverseKey].isPressed || _reverseTouch;
         }
 
         public bool GetLeft()
         {
-            return Input.GetKey(_leftKey) || _leftTouch;
+            return Keyboard.current[_leftKey].isPressed || _leftTouch;
         }
 
         public bool GetRight()
         {
-            return Input.GetKey(_rightKey) || _rightTouch;
+            return Keyboard.current[_rightKey].isPressed || _rightTouch;
         }
 
         public bool GetHandbrake()
         {
-            return Input.GetKey(_handbrakeKey) || _handbrakeTouch;
+            return Keyboard.current[_handbrakeKey].isPressed || _handbrakeTouch;
         }
 
         public void SetForward(bool forward)

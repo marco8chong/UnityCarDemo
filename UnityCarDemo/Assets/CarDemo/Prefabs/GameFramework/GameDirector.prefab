@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d92c7d1f755574f8d43b3639850fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forwardKey: 119
-  _reverseKey: 115
-  _leftKey: 97
-  _rightKey: 100
-  _handbrakeKey: 32
+  _forwardKey: 37
+  _reverseKey: 33
+  _leftKey: 15
+  _rightKey: 18
+  _handbrakeKey: 1
