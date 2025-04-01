@@ -84,6 +84,24 @@ namespace CarDemo
         public WheelCollider rearRightCollider;
 
         //
+        // Effects
+        //
+        [Space(20)]
+        [HorizontalLine(color: EColor.Blue)]
+        [Header("Effects")]
+        [Space(10)]
+
+        [SerializeField]
+        private bool _useEffects = true;
+
+        [SerializeField]
+        [Required("Rear left particle system required")]
+        private ParticleSystem _rlParticleSystem;
+        [SerializeField]
+        [Required("Rear right particle system required")]
+        private ParticleSystem _rrParticleSystem;
+
+        //
         // Car Simulation 
         //
         private float _carSpeed;
@@ -143,6 +161,19 @@ namespace CarDemo
             _rrWheelFriction.asymptoteSlip = rearRightCollider.sidewaysFriction.asymptoteSlip;
             _rrWheelFriction.asymptoteValue = rearRightCollider.sidewaysFriction.asymptoteValue;
             _rrWheelFriction.stiffness = rearRightCollider.sidewaysFriction.stiffness;
+
+            if (!_useEffects)
+            {
+                if (_rlParticleSystem != null)
+                {
+                    _rlParticleSystem.Stop();
+                }
+
+                if (_rrParticleSystem != null)
+                {
+                    _rrParticleSystem.Stop();
+                }
+            }
         }
 
         void Update()
@@ -293,10 +324,12 @@ namespace CarDemo
             if (Mathf.Abs(_localVelocityX) > 2.5f)
             {
                 _isDrifting = true;
+                DriftCarParticles();
             }
             else
             {
                 _isDrifting = false;
+                DriftCarParticles();
             }
 
             _throttleAxis = _throttleAxis + (Time.deltaTime * 3.0f);
@@ -337,10 +370,12 @@ namespace CarDemo
             if (Mathf.Abs(_localVelocityX) > 2.5f)
             {
                 _isDrifting = true;
+                DriftCarParticles();
             }
             else
             {
                 _isDrifting = false;
+                DriftCarParticles();
             }
 
             _throttleAxis = _throttleAxis - (Time.deltaTime * 3.0f);
@@ -389,10 +424,12 @@ namespace CarDemo
             if (Mathf.Abs(_localVelocityX) > 2.5f)
             {
                 _isDrifting = true;
+                DriftCarParticles();
             }
             else
             {
                 _isDrifting = false;
+                DriftCarParticles();
             }
 
             if (_throttleAxis != 0.0f)
@@ -479,6 +516,43 @@ namespace CarDemo
             }
 
             _isTractionLocked = true;
+            DriftCarParticles();
+        }
+
+        public void DriftCarParticles()
+        {
+            if (_useEffects)
+            {
+                try
+                {
+                    if (_isDrifting)
+                    {
+                        _rlParticleSystem.Play();
+                        _rrParticleSystem.Play();
+                    }
+                    else
+                    {
+                        _rlParticleSystem.Stop();
+                        _rrParticleSystem.Stop();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning(ex);
+                }
+            }
+            else
+            {
+                if (_rlParticleSystem != null)
+                {
+                    _rlParticleSystem.Stop();
+                }
+
+                if (_rrParticleSystem != null)
+                {
+                    _rrParticleSystem.Stop();
+                }
+            }
         }
 
         public void RecoverTraction()
