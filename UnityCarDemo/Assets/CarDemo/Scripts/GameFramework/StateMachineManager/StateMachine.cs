@@ -101,6 +101,7 @@ namespace CarDemo
             }
         }
 
+        [Button]
         public void NextGameState()
         {
             if (_currentState != null)
