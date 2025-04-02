@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d09917c706d7e459265e64e8c62c3b, type: 3}
+  m_Name: Stage01_0010_WaitForAllBalls
+  m_EditorClassIdentifier: 
+  _nextState: {fileID: 11400000, guid: a4740acefbf0536409d10faaa7fb8c82, type: 2}
+  _gameConditions:
+  - {fileID: 11400000, guid: b852bf8efc1e76542a1cfcf71ab8c8fc, type: 2}
+  - {fileID: 11400000, guid: 4382bc307ba60c549bf63f4ba0cf1e06, type: 2}
+  - {fileID: 11400000, guid: 1c8dee6d27579d44c86ef7cfae4524fc, type: 2}
