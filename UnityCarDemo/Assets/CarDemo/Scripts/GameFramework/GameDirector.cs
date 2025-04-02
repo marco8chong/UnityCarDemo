@@ -17,6 +17,10 @@ namespace CarDemo
         [Required("Camera manager required")]
         private CameraManager _cameraManager = null;
 
+        [SerializeField]
+        [Required("Object tag manager required")]
+        private ObjectTagManager _objectTagManager = null;
+
         public GameInputManager GameInputManager
         {
             get
@@ -30,6 +34,14 @@ namespace CarDemo
             get
             {
                 return _cameraManager;
+            }
+        }
+
+        public ObjectTagManager ObjectTagManager
+        {
+            get
+            {
+                return _objectTagManager;
             }
         }
 
