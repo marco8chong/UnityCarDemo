@@ -13,11 +13,23 @@ namespace CarDemo
         [Required("Game input manager required")]
         private GameInputManager _gameInputManager = null;
 
+        [SerializeField]
+        [Required("Camera manager required")]
+        private CameraManager _cameraManager = null;
+
         public GameInputManager GameInputManager
         {
             get
             {
                 return _gameInputManager;
+            }
+        }
+
+        public CameraManager CameraManager
+        {
+            get
+            {
+                return _cameraManager;
             }
         }
 
