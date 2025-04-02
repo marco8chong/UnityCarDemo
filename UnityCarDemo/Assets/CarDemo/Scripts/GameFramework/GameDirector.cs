@@ -21,6 +21,10 @@ namespace CarDemo
         [Required("Object tag manager required")]
         private ObjectTagManager _objectTagManager = null;
 
+        [SerializeField]
+        [Required("Game event manager required")]
+        private GameEventManager _gameEventManager = null;
+
         public GameInputManager GameInputManager
         {
             get
@@ -42,6 +46,14 @@ namespace CarDemo
             get
             {
                 return _objectTagManager;
+            }
+        }
+
+        public GameEventManager GameEventManager
+        {
+            get
+            {
+                return _gameEventManager;
             }
         }
 
