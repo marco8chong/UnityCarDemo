@@ -25,6 +25,10 @@ namespace CarDemo
         [Required("Game event manager required")]
         private GameEventManager _gameEventManager = null;
 
+        [SerializeField]
+        [Required("Game condition manager required")]
+        private GameConditionManager _gameConditionManager = null;
+
         public GameInputManager GameInputManager
         {
             get
@@ -54,6 +58,14 @@ namespace CarDemo
             get
             {
                 return _gameEventManager;
+            }
+        }
+
+        public GameConditionManager GameConditionManager
+        {
+            get
+            {
+                return _gameConditionManager;
             }
         }
 
