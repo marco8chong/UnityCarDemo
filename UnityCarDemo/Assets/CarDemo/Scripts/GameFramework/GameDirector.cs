@@ -29,6 +29,10 @@ namespace CarDemo
         [Required("Game condition manager required")]
         private GameConditionManager _gameConditionManager = null;
 
+        [SerializeField]
+        [Required("State machine manager required")]
+        private StateMachineManager _stateMachineManager = null;
+
         public GameInputManager GameInputManager
         {
             get
@@ -66,6 +70,14 @@ namespace CarDemo
             get
             {
                 return _gameConditionManager;
+            }
+        }
+
+        public StateMachineManager StateMachineManager
+        {
+            get
+            {
+                return _stateMachineManager;
             }
         }
 
