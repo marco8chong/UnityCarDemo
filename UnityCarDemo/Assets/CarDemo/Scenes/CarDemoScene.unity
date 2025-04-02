@@ -601,11 +601,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1d115572ab0c744ae99d94fe7dfd0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InitialState: {fileID: 0}
-  m_AutoStart: 1
-  m_PrintStartLog: 1
-  m_PrintEndLog: 1
-  m_DebugHistory: []
+  _initialState: {fileID: 0}
+  _autoStart: 1
+  _printStartLog: 1
+  _printEndLog: 1
+  _debugHistory: []
 --- !u!4 &1307321496
 Transform:
   m_ObjectHideFlags: 0
