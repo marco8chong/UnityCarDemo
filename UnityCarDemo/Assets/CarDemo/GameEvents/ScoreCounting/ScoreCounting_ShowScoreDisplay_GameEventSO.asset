@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4cfba3207b41c84dbde31674780fa26, type: 3}
-  m_Name: Main_0010_OneSecondPauseAfterStage01
+  m_Script: {fileID: 11500000, guid: 9e689aa7e2edec140980cbb3bc58c7a2, type: 3}
+  m_Name: ScoreCounting_ShowScoreDisplay_GameEventSO
   m_EditorClassIdentifier: 
-  _nextState: {fileID: 11400000, guid: 73278a238bc02844cbc0468124011985, type: 2}
-  _waitingMode: 0
-  _waitingTime: 1
