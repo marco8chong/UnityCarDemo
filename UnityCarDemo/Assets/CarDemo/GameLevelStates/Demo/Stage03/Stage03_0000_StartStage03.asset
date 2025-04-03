@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e689aa7e2edec140980cbb3bc58c7a2, type: 3}
-  m_Name: ScoreCounting_ClearScore_GameEventSO
+  m_Script: {fileID: 11500000, guid: 1c3162803e62bb54b93414c1d23e2b28, type: 3}
+  m_Name: Stage03_0000_StartStage03
   m_EditorClassIdentifier: 
+  _nextState: {fileID: 11400000, guid: 3af490e1cc29496489a59d2c19d97093, type: 2}
+  _debugMessage: Start Stage 03

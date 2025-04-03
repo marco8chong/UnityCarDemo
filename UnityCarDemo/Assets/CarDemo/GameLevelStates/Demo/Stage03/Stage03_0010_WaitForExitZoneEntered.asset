@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d86c08a49dee9094981c4ea3b4a2b34b, type: 3}
+  m_Name: Stage03_0010_WaitForExitZoneEntered
+  m_EditorClassIdentifier: 
+  _nextState: {fileID: 11400000, guid: dc2429db1e7f0b34f92b987f6aefea1e, type: 2}
+  _targetGameEvents:
+  - {fileID: 11400000, guid: bccb4471985f48444af699b3c2981262, type: 2}
