@@ -380,7 +380,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _fadingDuration: 5
+  _fadingDuration: 8
 --- !u!1001 &6469205990707102356
 PrefabInstance:
   m_ObjectHideFlags: 0
