@@ -33,6 +33,10 @@ namespace CarDemo
         [Required("State machine manager required")]
         private StateMachineManager _stateMachineManager = null;
 
+        [SerializeField]
+        [Required("Game loading manager required")]
+        private GameLoadingManager _gameLoadingManager = null;
+
         public GameInputManager GameInputManager
         {
             get
@@ -78,6 +82,14 @@ namespace CarDemo
             get
             {
                 return _stateMachineManager;
+            }
+        }
+
+        public GameLoadingManager GameLoadingManager
+        {
+            get
+            {
+                return _gameLoadingManager;
             }
         }
 
