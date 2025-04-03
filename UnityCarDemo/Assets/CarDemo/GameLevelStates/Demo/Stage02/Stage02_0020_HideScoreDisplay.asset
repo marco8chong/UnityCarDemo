@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29d993310fc02f44a039afd0562e45e, type: 3}
   m_Name: Stage02_0020_HideScoreDisplay
   m_EditorClassIdentifier: 
-  _nextState: {fileID: 0}
-  _gameEvents: []
+  _nextState: {fileID: 11400000, guid: 9e113607ded5b924b91ff8bcb422fb7a, type: 2}
+  _gameEvents:
+  - {fileID: 11400000, guid: 522274b990b82554c83dbd13d46bda33, type: 2}
+  - {fileID: 11400000, guid: abac9a4c903f8e4409fba0a4209a7529, type: 2}

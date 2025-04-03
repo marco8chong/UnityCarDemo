@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86c08a49dee9094981c4ea3b4a2b34b, type: 3}
   m_Name: Stage02_0010_WaitForTargetScoreReached
   m_EditorClassIdentifier: 
-  _nextState: {fileID: 11400000, guid: 9e113607ded5b924b91ff8bcb422fb7a, type: 2}
+  _nextState: {fileID: 11400000, guid: ee61bc13fd74fb34d9787d4a97609367, type: 2}
   _targetGameEvents:
   - {fileID: 11400000, guid: be9fd5bca2af89e429eaff59489d5db2, type: 2}
