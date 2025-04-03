@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b7bec26a3b6db9944abfae20f0c054e7, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: b7bec26a3b6db9944abfae20f0c054e7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_margin: {x: 30, y: 30, z: 30, w: 30}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5852385869340022892
@@ -482,10 +482,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3325043992406600096, guid: d34380e1d6dca984baad8348358443f4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1601864856707503771}
+      addedObject: {fileID: 2204069759652774532}
     - targetCorrespondingSourceObject: {fileID: 3325043992406600096, guid: d34380e1d6dca984baad8348358443f4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2204069759652774532}
+      addedObject: {fileID: 1601864856707503771}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d34380e1d6dca984baad8348358443f4, type: 3}
 --- !u!224 &8638978816357444404 stripped
