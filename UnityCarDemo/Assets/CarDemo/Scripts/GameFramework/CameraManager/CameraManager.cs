@@ -9,11 +9,15 @@ namespace CarDemo
         private bool _followPlayer = true;
 
         [SerializeField]
-        private Vector3 _cameraOffset = new Vector3(0.0f, 2.0f, -7.0f);
+        private Vector3 _cameraOffset = new Vector3(0.0f, 1.5f, -4.0f);
 
         [SerializeField]
         [Range(0.5f, 2.0f)]
         private float _cameraSpeed = 1.0f;
+
+        [SerializeField]
+        [Range(0.1f, 5.0f)]
+        private float _deadZone = 1.0f;
 
         private Camera _camera;
 
@@ -34,7 +38,10 @@ namespace CarDemo
                 {
                     Vector3 cameraTargetPosition = cameraTarget.transform.TransformPoint(_cameraOffset);
 
-                    _camera.transform.position = Vector3.Lerp(_camera.transform.position, cameraTargetPosition, Time.deltaTime * 1.5f * _cameraSpeed);
+                    float camDist = Vector3.Distance(cameraTargetPosition, _camera.transform.position);
+                    float adjustedSpeed = _cameraSpeed * Mathf.Clamp01(camDist / _deadZone);
+
+                    _camera.transform.position = Vector3.Lerp(_camera.transform.position, cameraTargetPosition, Time.deltaTime * 1.5f * adjustedSpeed);
                     _camera.transform.LookAt(cameraTarget.transform, Vector3.up);
                 }
             }

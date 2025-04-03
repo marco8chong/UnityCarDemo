@@ -239,6 +239,7 @@ MonoBehaviour:
   _followPlayer: 1
   _cameraOffset: {x: 0, y: 1.5, z: -4}
   _cameraSpeed: 1
+  _deadZone: 1
 --- !u!1 &6073747183676241760
 GameObject:
   m_ObjectHideFlags: 0
