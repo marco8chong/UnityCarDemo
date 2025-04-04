@@ -90,11 +90,15 @@ Game Event:
 
 ![My Image](ReadmeImages/GameEventTrigger.jpg)
 
+![My Image](ReadmeImages/GameEventSO.jpg)
+
 ![My Image](ReadmeImages/GameEventListener.jpg)
 
 Game Condition:
 
 ![My Image](ReadmeImages/GameConditionTrigger.jpg)
+
+![My Image](ReadmeImages/GameConditionSO.jpg)
 
 ```csharp
 GameDirector.Instance.GameConditionManager.OnConditionRegistered += GameConditionManager_OnConditionRegistered;
