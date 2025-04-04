@@ -1,5 +1,8 @@
 # Unity Car Demo
+
 *** This is not a real game project. ***
+
+*** This project is created for job interview only ***
 
 ![My Image](ReadmeImages/MainMenuScene.jpg)
 
@@ -16,10 +19,24 @@ Starting Scene:
 Assets/CarDemo/Scenes/MenuScene
 ```
 
+Control Methods:
+
+Keyboard
+- W - Forward
+- A - Left
+- S - Reverse / Brake
+- D - Right
+- Space - Drift
+
+Touch
+- Virtual game pad
+
+![My Image](ReadmeImages/VirtualGamePadControl.jpg)  
+
 # Code Structure
 ![My Image](ReadmeImages/GeneralCodeStructure.jpg)
 
-A `GameDirector` is created for accessing all major features:
+A `GameDirector` is created for accessing all major features in the game framework:
 - `GameInputManager` (abstraction for inputs like keyboard and touch screen)
 - `CameraManager` (camera movement control)
 - `ObjectTagManager` (object tagging system for accessing objects quickly)
@@ -27,3 +44,71 @@ A `GameDirector` is created for accessing all major features:
 - `GameConditionManager` (system to save game conditions)
 - `StateMachineManager` (state machine system for controlling game flow)
 - `GameLoadingManager` (scene loading management)
+
+Game Director:
+
+![My Image](ReadmeImages/GameDirector.jpg)
+
+```csharp
+GameDirector.Instance.GameInputManager.GetForward();
+```
+
+```csharp
+GameDirector.Instance.GameLoadingManager.LoadingSceneAsync(_gameLoadingSceneSO);
+```
+
+Object Tag:
+
+![My Image](ReadmeImages/ObjectTag.jpg)
+
+![My Image](ReadmeImages/ObjectTagSO.jpg)
+
+```csharp
+if (_callMultipleObjects)
+{
+    List<ObjectTag> objectTags = GameDirector.Instance.ObjectTagManager.GetObjectsByTag(_objectTag);
+
+    foreach (ObjectTag tag in objectTags)
+    {
+        CallObjectTag(tag);
+    }
+}
+else
+{
+    ObjectTag tag = GameDirector.Instance.ObjectTagManager.GetObjectByTag(_objectTag);
+
+    if (tag)
+    {
+        CallObjectTag(tag);
+    }
+}
+```
+
+Game Event:
+
+![My Image](ReadmeImages/GameEventTrigger.jpg)
+
+![My Image](ReadmeImages/GameEventListener.jpg)
+
+Game Condition:
+
+![My Image](ReadmeImages/GameConditionTrigger.jpg)
+
+```csharp
+GameDirector.Instance.GameConditionManager.OnConditionRegistered += GameConditionManager_OnConditionRegistered;
+
+private void GameConditionManager_OnConditionRegistered(GameConditionSO gameConditionSO)
+{
+    if (gameConditionSO == _targetGameCondition)
+    {
+        // do something...
+    }
+}
+
+public bool CheckCondition()
+{
+    return GameDirector.Instance.GameConditionManager.CheckGameCondition(_targetGameCondition);
+}
+```
+
+
