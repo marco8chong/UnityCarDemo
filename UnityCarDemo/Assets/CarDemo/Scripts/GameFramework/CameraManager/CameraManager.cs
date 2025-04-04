@@ -22,6 +22,10 @@ namespace CarDemo
         [Range(0.1f, 5.0f)]
         private float _deadZone = 1.0f;
 
+        [SerializeField]
+        [Range(10.0f, 100.0f)]
+        private float _maxCameraDistance = 20.0f;
+
         private Camera _camera;
 
         private List<CameraTarget> _cameraTargets = new List<CameraTarget>();
@@ -44,9 +48,16 @@ namespace CarDemo
                     float camDist = Vector3.Distance(cameraTargetPosition, _camera.transform.position);
                     float adjustedSpeed = _cameraSpeed * Mathf.Clamp01(camDist / _deadZone);
 
-                    if (CanCameraMove(_camera.transform.position, cameraTargetPosition))
+                    if (camDist <= _maxCameraDistance)
                     {
-                        _camera.transform.position = Vector3.Lerp(_camera.transform.position, cameraTargetPosition, Time.deltaTime * 1.5f * adjustedSpeed);
+                        if (CanCameraMove(_camera.transform.position, cameraTargetPosition))
+                        {
+                            _camera.transform.position = Vector3.Lerp(_camera.transform.position, cameraTargetPosition, Time.deltaTime * 1.5f * adjustedSpeed);
+                        }
+                    }
+                    else
+                    {
+                        _camera.transform.position = cameraTargetPosition;
                     }
 
                     _camera.transform.LookAt(cameraTarget.transform, Vector3.up);
