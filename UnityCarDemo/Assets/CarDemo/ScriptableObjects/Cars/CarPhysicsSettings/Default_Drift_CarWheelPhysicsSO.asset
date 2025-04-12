@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fb89a9d380c1c43a9d0a89d15a6ea6, type: 3}
-  m_Name: CarWheelPhysicsSO_Drift
+  m_Name: Default_Drift_CarWheelPhysicsSO
   m_EditorClassIdentifier: 
   _suspensionSpringSettings:
     Spring: 35000

@@ -7,18 +7,13 @@ namespace CarDemo
     public class CarWheelPhysics : MonoBehaviour
     {
         [SerializeField]
-        [Required("Wheel physics settings required (normal)")]
-        private CarWheelPhysicsSO _carWheelPhysicsSettingsNormal;
-
-        [SerializeField]
-        [Required("Wheel physics settings required (drift)")]
-        private CarWheelPhysicsSO _carWheelPhysicsSettingsDrift;
+        [Required("Car physics controller required")]
+        private CarPhysicsController _carPhysicsController = null;
 
         [SerializeField]
         private Transform _wheelMesh = null;
 
         private WheelCollider _wheelCollider = null;
-        private CarPhysicsController _carPhysicsController = null;
 
         private JointSpring _suspensionSpring = new JointSpring();
         private WheelFrictionCurve _forwardFriction = new WheelFrictionCurve();
@@ -81,9 +76,21 @@ namespace CarDemo
         private void Start()
         {
             _wheelCollider = GetComponent<WheelCollider>();
-            _carPhysicsController = GetComponentInParent<CarPhysicsController>();
+
+            if (_carPhysicsController)
+            {
+                _carPhysicsController.OnCarPhysicsChanged += CarPhysicsController_OnCarPhysicsChanged;
+            }
 
             UpdateWheelParameters(true);
+        }
+
+        private void OnDestroy()
+        {
+            if (_carPhysicsController)
+            {
+                _carPhysicsController.OnCarPhysicsChanged -= CarPhysicsController_OnCarPhysicsChanged;
+            }
         }
 
         private void Update()
@@ -92,35 +99,46 @@ namespace CarDemo
             AnimateWheelMesh();
         }
 
+        private void CarPhysicsController_OnCarPhysicsChanged()
+        {
+            UpdateWheelParameters(true);
+        }
+
         private void UpdateWheelParameters(bool forceUpdate = false)
         {
-            if (_carPhysicsController && _carWheelPhysicsSettingsNormal && _carWheelPhysicsSettingsDrift)
+            if (_carPhysicsController)
             {
                 float currentHandbrakeAxis = _carPhysicsController.HandbrakeAxis;
 
                 if (forceUpdate || (currentHandbrakeAxis != _lastHandbrakeAxis))
                 {
-                    float normalRatio = 1.0f - currentHandbrakeAxis;
-                    float driftRatio = currentHandbrakeAxis;
+                    CarWheelPhysicsSO carWheelPhysicsSettingsNormal = _carPhysicsController.CarWheelPhysicsSettingsNormal;
+                    CarWheelPhysicsSO carWheelPhysicsSettingsDrift = _carPhysicsController.CarWheelPhysicsSettingDrift;
 
-                    _suspensionSpring.spring = _carWheelPhysicsSettingsNormal.SuspensionSpring.Spring * normalRatio + _carWheelPhysicsSettingsDrift.SuspensionSpring.Spring * driftRatio;
-                    _suspensionSpring.damper = _carWheelPhysicsSettingsNormal.SuspensionSpring.Damper * normalRatio + _carWheelPhysicsSettingsDrift.SuspensionSpring.Damper * driftRatio;
-                    _suspensionSpring.targetPosition = _carWheelPhysicsSettingsNormal.SuspensionSpring.TargetPosition * normalRatio + _carWheelPhysicsSettingsDrift.SuspensionSpring.TargetPosition * driftRatio;
-                    _wheelCollider.suspensionSpring = _suspensionSpring;
+                    if (carWheelPhysicsSettingsNormal && carWheelPhysicsSettingsDrift)
+                    {
+                        float normalRatio = 1.0f - currentHandbrakeAxis;
+                        float driftRatio = currentHandbrakeAxis;
 
-                    _forwardFriction.extremumSlip = _carWheelPhysicsSettingsNormal.ForwardFriction.ExtremumSlip * normalRatio + _carWheelPhysicsSettingsDrift.ForwardFriction.ExtremumSlip * driftRatio;
-                    _forwardFriction.extremumValue = _carWheelPhysicsSettingsNormal.ForwardFriction.ExtremumValue * normalRatio + _carWheelPhysicsSettingsDrift.ForwardFriction.ExtremumValue * driftRatio;
-                    _forwardFriction.asymptoteSlip = _carWheelPhysicsSettingsNormal.ForwardFriction.AsymptoteSlip * normalRatio + _carWheelPhysicsSettingsDrift.ForwardFriction.AsymptoteSlip * driftRatio;
-                    _forwardFriction.asymptoteValue = _carWheelPhysicsSettingsNormal.ForwardFriction.AsymptoteValue * normalRatio + _carWheelPhysicsSettingsDrift.ForwardFriction.AsymptoteValue * driftRatio;
-                    _forwardFriction.stiffness = _carWheelPhysicsSettingsNormal.ForwardFriction.Stiffness * normalRatio + _carWheelPhysicsSettingsDrift.ForwardFriction.Stiffness * driftRatio;
-                    _wheelCollider.forwardFriction = _forwardFriction;
+                        _suspensionSpring.spring = carWheelPhysicsSettingsNormal.SuspensionSpring.Spring * normalRatio + carWheelPhysicsSettingsDrift.SuspensionSpring.Spring * driftRatio;
+                        _suspensionSpring.damper = carWheelPhysicsSettingsNormal.SuspensionSpring.Damper * normalRatio + carWheelPhysicsSettingsDrift.SuspensionSpring.Damper * driftRatio;
+                        _suspensionSpring.targetPosition = carWheelPhysicsSettingsNormal.SuspensionSpring.TargetPosition * normalRatio + carWheelPhysicsSettingsDrift.SuspensionSpring.TargetPosition * driftRatio;
+                        _wheelCollider.suspensionSpring = _suspensionSpring;
 
-                    _sidewaysFriction.extremumSlip = _carWheelPhysicsSettingsNormal.SidewaysFriction.ExtremumSlip * normalRatio + _carWheelPhysicsSettingsDrift.SidewaysFriction.ExtremumSlip * driftRatio;
-                    _sidewaysFriction.extremumValue = _carWheelPhysicsSettingsNormal.SidewaysFriction.ExtremumValue * normalRatio + _carWheelPhysicsSettingsDrift.SidewaysFriction.ExtremumValue * driftRatio;
-                    _sidewaysFriction.asymptoteSlip = _carWheelPhysicsSettingsNormal.SidewaysFriction.AsymptoteSlip * normalRatio + _carWheelPhysicsSettingsDrift.SidewaysFriction.AsymptoteSlip * driftRatio;
-                    _sidewaysFriction.asymptoteValue = _carWheelPhysicsSettingsNormal.SidewaysFriction.AsymptoteValue * normalRatio + _carWheelPhysicsSettingsDrift.SidewaysFriction.AsymptoteValue * driftRatio;
-                    _sidewaysFriction.stiffness = _carWheelPhysicsSettingsNormal.SidewaysFriction.Stiffness * normalRatio + _carWheelPhysicsSettingsDrift.SidewaysFriction.Stiffness * driftRatio;
-                    _wheelCollider.sidewaysFriction = _sidewaysFriction;
+                        _forwardFriction.extremumSlip = carWheelPhysicsSettingsNormal.ForwardFriction.ExtremumSlip * normalRatio + carWheelPhysicsSettingsDrift.ForwardFriction.ExtremumSlip * driftRatio;
+                        _forwardFriction.extremumValue = carWheelPhysicsSettingsNormal.ForwardFriction.ExtremumValue * normalRatio + carWheelPhysicsSettingsDrift.ForwardFriction.ExtremumValue * driftRatio;
+                        _forwardFriction.asymptoteSlip = carWheelPhysicsSettingsNormal.ForwardFriction.AsymptoteSlip * normalRatio + carWheelPhysicsSettingsDrift.ForwardFriction.AsymptoteSlip * driftRatio;
+                        _forwardFriction.asymptoteValue = carWheelPhysicsSettingsNormal.ForwardFriction.AsymptoteValue * normalRatio + carWheelPhysicsSettingsDrift.ForwardFriction.AsymptoteValue * driftRatio;
+                        _forwardFriction.stiffness = carWheelPhysicsSettingsNormal.ForwardFriction.Stiffness * normalRatio + carWheelPhysicsSettingsDrift.ForwardFriction.Stiffness * driftRatio;
+                        _wheelCollider.forwardFriction = _forwardFriction;
+
+                        _sidewaysFriction.extremumSlip = carWheelPhysicsSettingsNormal.SidewaysFriction.ExtremumSlip * normalRatio + carWheelPhysicsSettingsDrift.SidewaysFriction.ExtremumSlip * driftRatio;
+                        _sidewaysFriction.extremumValue = carWheelPhysicsSettingsNormal.SidewaysFriction.ExtremumValue * normalRatio + carWheelPhysicsSettingsDrift.SidewaysFriction.ExtremumValue * driftRatio;
+                        _sidewaysFriction.asymptoteSlip = carWheelPhysicsSettingsNormal.SidewaysFriction.AsymptoteSlip * normalRatio + carWheelPhysicsSettingsDrift.SidewaysFriction.AsymptoteSlip * driftRatio;
+                        _sidewaysFriction.asymptoteValue = carWheelPhysicsSettingsNormal.SidewaysFriction.AsymptoteValue * normalRatio + carWheelPhysicsSettingsDrift.SidewaysFriction.AsymptoteValue * driftRatio;
+                        _sidewaysFriction.stiffness = carWheelPhysicsSettingsNormal.SidewaysFriction.Stiffness * normalRatio + carWheelPhysicsSettingsDrift.SidewaysFriction.Stiffness * driftRatio;
+                        _wheelCollider.sidewaysFriction = _sidewaysFriction;
+                    }
                 }
 
                 _lastHandbrakeAxis = currentHandbrakeAxis;

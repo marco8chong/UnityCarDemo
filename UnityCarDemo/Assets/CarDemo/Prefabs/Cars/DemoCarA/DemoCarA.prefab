@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carPhysicsSettings: {fileID: 11400000, guid: e12a03d9cbf607143a3d5b7d980255e2, type: 2}
+  _carWheelPhysicsSettingsNormal: {fileID: 11400000, guid: 2e3b0de34293d5844a2da759eacf8a08, type: 2}
+  _carWheelPhysicsSettingsDrift: {fileID: 11400000, guid: 9b2a1050293afb5428cf5a1f4cdf06f3, type: 2}
   _frontLeftWheel: {fileID: 4439270620223084026}
   _frontRightWheel: {fileID: 8645561483595466775}
   _rearLeftWheel: {fileID: 6009269983803739658}
@@ -70,13 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5aa8eba99b75a49a34b093eaa111d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _throttlePushingTime: 1
-  _throttleReleasingTime: 0.5
-  _brakePushingTime: 0.5
-  _BrakeReleasingTime: 0.5
-  _steeringTime: 0.5
-  _steeringReturningTime: 0.5
-  _handbrakeReleasingTime: 1
+  _carInputSettings: {fileID: 11400000, guid: 21fd5d4845dec3442830efc3a417b5d6, type: 2}
 --- !u!54 &5135156708204615449
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -273,8 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d597cf6ed31a2849b47df19fae991b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carWheelPhysicsSettingsNormal: {fileID: 11400000, guid: 2e3b0de34293d5844a2da759eacf8a08, type: 2}
-  _carWheelPhysicsSettingsDrift: {fileID: 11400000, guid: 9b2a1050293afb5428cf5a1f4cdf06f3, type: 2}
+  _carPhysicsController: {fileID: 8789792019888432667}
   _wheelMesh: {fileID: 2699983780271061893}
 --- !u!146 &8706808774334851022
 WheelCollider:
@@ -361,8 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d597cf6ed31a2849b47df19fae991b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carWheelPhysicsSettingsNormal: {fileID: 11400000, guid: 2e3b0de34293d5844a2da759eacf8a08, type: 2}
-  _carWheelPhysicsSettingsDrift: {fileID: 11400000, guid: 9b2a1050293afb5428cf5a1f4cdf06f3, type: 2}
+  _carPhysicsController: {fileID: 8789792019888432667}
   _wheelMesh: {fileID: 2897099083007925690}
 --- !u!146 &7877667524431639919
 WheelCollider:
@@ -449,8 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d597cf6ed31a2849b47df19fae991b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carWheelPhysicsSettingsNormal: {fileID: 11400000, guid: 2e3b0de34293d5844a2da759eacf8a08, type: 2}
-  _carWheelPhysicsSettingsDrift: {fileID: 11400000, guid: 9b2a1050293afb5428cf5a1f4cdf06f3, type: 2}
+  _carPhysicsController: {fileID: 8789792019888432667}
   _wheelMesh: {fileID: 1276657636418845578}
 --- !u!146 &2239677824950174677
 WheelCollider:
@@ -10463,8 +10456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d597cf6ed31a2849b47df19fae991b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carWheelPhysicsSettingsNormal: {fileID: 11400000, guid: 2e3b0de34293d5844a2da759eacf8a08, type: 2}
-  _carWheelPhysicsSettingsDrift: {fileID: 11400000, guid: 9b2a1050293afb5428cf5a1f4cdf06f3, type: 2}
+  _carPhysicsController: {fileID: 8789792019888432667}
   _wheelMesh: {fileID: 6528361102885328038}
 --- !u!146 &8615825633152659129
 WheelCollider:

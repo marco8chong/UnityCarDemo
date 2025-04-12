@@ -39,6 +39,10 @@ namespace CarDemo
             {
                 return _suspensionSpringSettings;
             }
+            set
+            {
+                _suspensionSpringSettings = value;
+            }
         }
 
         public WheelFrictionSettings ForwardFriction
@@ -47,6 +51,10 @@ namespace CarDemo
             {
                 return _forwardFrictionSettings;
             }
+            set
+            {
+                _forwardFrictionSettings = value;
+            }
         }
 
         public WheelFrictionSettings SidewaysFriction
@@ -54,6 +62,10 @@ namespace CarDemo
             get
             {
                 return _sidewaysFrictionSettings;
+            }
+            set
+            {
+                _sidewaysFrictionSettings = value;
             }
         }
     }

@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace CarDemo
@@ -6,32 +7,8 @@ namespace CarDemo
     public class CarInputController : MonoBehaviour
     {
         [SerializeField]
-        [Range(0.1f, 3.0f)]
-        private float _throttlePushingTime = 1.0f;
-
-        [SerializeField]
-        [Range(0.1f, 10.0f)]
-        private float _throttleReleasingTime = 0.5f;
-
-        [SerializeField]
-        [Range(0.1f, 10.0f)]
-        private float _brakePushingTime = 0.5f;
-
-        [SerializeField]
-        [Range(0.1f, 10.0f)]
-        private float _BrakeReleasingTime = 0.5f;
-
-        [SerializeField]
-        [Range(0.1f, 10.0f)]
-        private float _steeringTime = 0.5f;
-
-        [SerializeField]
-        [Range(0.1f, 1.0f)]
-        private float _steeringReturningTime = 0.5f;
-
-        [SerializeField]
-        [Range(0.1f, 2.0f)]
-        private float _handbrakeReleasingTime = 1.0f;
+        [Required("Car input settings required")]
+        private CarInputSO _carInputSettings = null;
 
         private CarPhysicsController _carPhysicsController;
 
@@ -55,41 +32,41 @@ namespace CarDemo
 
             if (gameInputManager.GetThrottle())
             {
-                _carPhysicsController.ThrottleAxis += Time.deltaTime / _throttlePushingTime;
+                _carPhysicsController.ThrottleAxis += Time.deltaTime / _carInputSettings.ThrottlePushingTime;
             }
             else
             {
-                _carPhysicsController.ThrottleAxis -= Time.deltaTime / _throttleReleasingTime;
+                _carPhysicsController.ThrottleAxis -= Time.deltaTime / _carInputSettings.ThrottleReleasingTime;
             }
 
             if (gameInputManager.GetBrakeReverse())
             {
-                _carPhysicsController.BrakeAxis += Time.deltaTime / _brakePushingTime;
+                _carPhysicsController.BrakeAxis += Time.deltaTime / _carInputSettings.BrakePushingTime;
             }
             else
             {
-                _carPhysicsController.BrakeAxis -= Time.deltaTime / _BrakeReleasingTime;
+                _carPhysicsController.BrakeAxis -= Time.deltaTime / _carInputSettings.BrakeReleasingTime;
             }
 
             if (gameInputManager.GetLeft())
             {
-                _carPhysicsController.SteeringAxis -= Time.deltaTime / _steeringTime;
+                _carPhysicsController.SteeringAxis -= Time.deltaTime / _carInputSettings.SteeringTime;
             }
 
             if (gameInputManager.GetRight())
             {
-                _carPhysicsController.SteeringAxis += Time.deltaTime / _steeringTime;
+                _carPhysicsController.SteeringAxis += Time.deltaTime / _carInputSettings.SteeringTime;
             }
 
             if (!(gameInputManager.GetLeft() || gameInputManager.GetRight()))
             {
                 if (_carPhysicsController.SteeringAxis > 0.0f)
                 {
-                    _carPhysicsController.SteeringAxis = Mathf.Clamp(_carPhysicsController.SteeringAxis - Time.deltaTime / _steeringReturningTime, 0.0f, 1.0f);
+                    _carPhysicsController.SteeringAxis = Mathf.Clamp(_carPhysicsController.SteeringAxis - Time.deltaTime / _carInputSettings.SteeringReturningTime, 0.0f, 1.0f);
                 }
                 else
                 {
-                    _carPhysicsController.SteeringAxis = Mathf.Clamp(_carPhysicsController.SteeringAxis + Time.deltaTime / _steeringReturningTime, -1.0f, 0.0f);
+                    _carPhysicsController.SteeringAxis = Mathf.Clamp(_carPhysicsController.SteeringAxis + Time.deltaTime / _carInputSettings.SteeringReturningTime, -1.0f, 0.0f);
                 }
             }
 
@@ -101,7 +78,7 @@ namespace CarDemo
             {
                 if (_currentHandbrake)
                 {
-                    _carPhysicsController.HandbrakeAxis = Mathf.Clamp(_carPhysicsController.HandbrakeAxis - Time.deltaTime / _handbrakeReleasingTime, 0.5f, 1.0f);
+                    _carPhysicsController.HandbrakeAxis = Mathf.Clamp(_carPhysicsController.HandbrakeAxis - Time.deltaTime / _carInputSettings.HandbrakeReleasingTime, 0.5f, 1.0f);
                 }
                 else
                 {

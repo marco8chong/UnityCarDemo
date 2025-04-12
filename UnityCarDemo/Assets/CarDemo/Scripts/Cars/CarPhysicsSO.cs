@@ -48,6 +48,10 @@ namespace CarDemo
             {
                 return _maxForwardSpeed;
             }
+            set
+            {
+                _maxForwardSpeed = value;
+            }
         }
 
         public float MaxReverseSpeed
@@ -55,6 +59,10 @@ namespace CarDemo
             get
             {
                 return _maxReverseSpeed;
+            }
+            set
+            {
+                _maxReverseSpeed = value;
             }
         }
 
@@ -64,6 +72,10 @@ namespace CarDemo
             {
                 return _accelerationMultiplier;
             }
+            set
+            {
+                _accelerationMultiplier = value;
+            }
         }
 
         public float ReverseMultiplier
@@ -71,6 +83,10 @@ namespace CarDemo
             get
             {
                 return _reverseMultiplier;
+            }
+            set
+            {
+                _reverseMultiplier = value;
             }
         }
 
@@ -80,6 +96,10 @@ namespace CarDemo
             {
                 return _maxSteeringAngle;
             }
+            set
+            {
+                _maxSteeringAngle = value;
+            }
         }
 
         public float BrakeForce
@@ -87,6 +107,10 @@ namespace CarDemo
             get
             {
                 return _brakeForce;
+            }
+            set
+            {
+                _brakeForce = value;
             }
         }
 
@@ -96,6 +120,10 @@ namespace CarDemo
             {
                 return _bodyMass;
             }
+            set
+            {
+                _bodyMass = value;
+            }
         }
 
         public Vector3 BodyMassCenter
@@ -103,6 +131,10 @@ namespace CarDemo
             get
             {
                 return _bodyMassCenter;
+            }
+            set
+            {
+                _bodyMassCenter = value;
             }
         }
     }

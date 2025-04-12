@@ -1,23 +1,31 @@
 using NaughtyAttributes;
+using System;
 using UnityEngine;
 
 namespace CarDemo
 {
     public class CarPhysicsController : MonoBehaviour
     {
+        public event Action OnCarPhysicsChanged;
+
         // car configuration
-        [Space(20)]
-        [HorizontalLine(color: EColor.Blue)]
-        [Header("Car Configuration")]
+        [Header("Car Physics Configuration")]
         [Space(10)]
 
         [SerializeField]
         [Required("Car physics settings required")]
         private CarPhysicsSO _carPhysicsSettings = null;
 
+        [SerializeField]
+        [Required("Wheel physics settings required (normal)")]
+        private CarWheelPhysicsSO _carWheelPhysicsSettingsNormal = null;
+
+        [SerializeField]
+        [Required("Wheel physics settings required (drift)")]
+        private CarWheelPhysicsSO _carWheelPhysicsSettingsDrift = null;
+
         // wheel configuration
         [Space(20)]
-        [HorizontalLine(color: EColor.Blue)]
         [Header("Wheel Configuration")]
         [Space(10)]
 
@@ -39,7 +47,6 @@ namespace CarDemo
 
         // effects
         [Space(20)]
-        [HorizontalLine(color: EColor.Blue)]
         [Header("Effects")]
         [Space(10)]
 
@@ -83,6 +90,45 @@ namespace CarDemo
 
             RunCarPhysics();
             DriftParicle(Mathf.Abs(_localVelocityX) > 2.5f);
+        }
+
+        public CarPhysicsSO CarPhysicsSettings
+        {
+            get
+            {
+                return _carPhysicsSettings;
+            }
+            set
+            {
+                _carPhysicsSettings = value;
+                OnCarPhysicsChanged?.Invoke();
+            }
+        }
+
+        public CarWheelPhysicsSO CarWheelPhysicsSettingsNormal
+        {
+            get
+            {
+                return _carWheelPhysicsSettingsNormal;
+            }
+            set
+            {
+                _carWheelPhysicsSettingsNormal = value;
+                OnCarPhysicsChanged?.Invoke();
+            }
+        }
+
+        public CarWheelPhysicsSO CarWheelPhysicsSettingDrift
+        {
+            get
+            {
+                return _carWheelPhysicsSettingsDrift;
+            }
+            set
+            {
+                _carWheelPhysicsSettingsDrift = value;
+                OnCarPhysicsChanged?.Invoke();
+            }
         }
 
         public float CarSpeed
@@ -259,6 +305,12 @@ namespace CarDemo
                     _rrParticleSystem.Stop();
                 }
             }
+        }
+
+        [Button]
+        public void ForceUpdatePhysicsSettings()
+        {
+            OnCarPhysicsChanged?.Invoke();
         }
     }
 }
