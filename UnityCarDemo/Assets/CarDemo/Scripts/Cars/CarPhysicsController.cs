@@ -63,23 +63,15 @@ namespace CarDemo
         [Header("Wheel Configuration")]
         [Space(10)]
 
-        [Required("Front left mesh required")]
-        public GameObject frontLeftMesh;
         [Required("Front left collider required")]
         public WheelCollider frontLeftCollider;
         [Space(10)]
-        [Required("Front right mesh required")]
-        public GameObject frontRightMesh;
         [Required("Front right collider required")]
         public WheelCollider frontRightCollider;
         [Space(10)]
-        [Required("Rear left mesh required")]
-        public GameObject rearLeftMesh;
         [Required("Rear left collider required")]
         public WheelCollider rearLeftCollider;
         [Space(10)]
-        [Required("Rear right mesh required")]
-        public GameObject rearRightMesh;
         [Required("Rear right collider required")]
         public WheelCollider rearRightCollider;
 
@@ -181,8 +173,6 @@ namespace CarDemo
             _carSpeed = (2.0f * Mathf.PI * frontLeftCollider.radius * frontLeftCollider.rpm * 60.0f) / 1000.0f;
             _localVelocityX = transform.InverseTransformDirection(_carRigidbody.linearVelocity).x;
             _localVelocityZ = transform.InverseTransformDirection(_carRigidbody.linearVelocity).z;
-
-            AnimateWheelMeshes();
         }
 
         public bool DeceleratingCar
@@ -283,40 +273,6 @@ namespace CarDemo
             float steeringAngle = _steeringAxis * _maxSteeringAngle;
             frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, _steeringSpeed);
             frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, _steeringSpeed);
-        }
-
-        void AnimateWheelMeshes()
-        {
-            try
-            {
-                Quaternion _flWRotation;
-                Vector3 _flWPosition;
-                frontLeftCollider.GetWorldPose(out _flWPosition, out _flWRotation);
-                frontLeftMesh.transform.position = _flWPosition;
-                frontLeftMesh.transform.rotation = _flWRotation;
-
-                Quaternion _frWRotation;
-                Vector3 _frWPosition;
-                frontRightCollider.GetWorldPose(out _frWPosition, out _frWRotation);
-                frontRightMesh.transform.position = _frWPosition;
-                frontRightMesh.transform.rotation = _frWRotation;
-
-                Quaternion _rlWRotation;
-                Vector3 _rlWPosition;
-                rearLeftCollider.GetWorldPose(out _rlWPosition, out _rlWRotation);
-                rearLeftMesh.transform.position = _rlWPosition;
-                rearLeftMesh.transform.rotation = _rlWRotation;
-
-                Quaternion _rrWRotation;
-                Vector3 _rrWPosition;
-                rearRightCollider.GetWorldPose(out _rrWPosition, out _rrWRotation);
-                rearRightMesh.transform.position = _rrWPosition;
-                rearRightMesh.transform.rotation = _rrWRotation;
-            }
-            catch (Exception ex)
-            {
-                Debug.LogWarning(ex);
-            }
         }
 
         public void GoForward()
