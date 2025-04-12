@@ -33,14 +33,14 @@ namespace CarDemo
             }
         }
 
-        public void SetForward(bool forward)
+        public void SetThrottle(bool forward)
         {
-            GameDirector.Instance.GameInputManager.SetForward(forward);
+            GameDirector.Instance.GameInputManager.SetThrottle(forward);
         }
 
-        public void SetReverse(bool reverse)
+        public void SetBrakeReverse(bool reverse)
         {
-            GameDirector.Instance.GameInputManager.SetReverse(reverse);
+            GameDirector.Instance.GameInputManager.SetBrakeReverse(reverse);
         }
 
         public void SetLeft(bool left)

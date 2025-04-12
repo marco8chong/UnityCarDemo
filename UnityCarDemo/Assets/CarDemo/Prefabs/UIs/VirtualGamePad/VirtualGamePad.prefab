@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 4047255561490417700}
   - component: {fileID: 4766468910868407726}
   m_Layer: 5
-  m_Name: Reverse
+  m_Name: BrakeReverse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5286172451992614102}
         m_TargetAssemblyTypeName: CarDemo.VirtualGamePadButton, Assembly-CSharp
-        m_MethodName: SetReverse
+        m_MethodName: SetBrakeReverse
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -461,7 +461,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5286172451992614102}
         m_TargetAssemblyTypeName: CarDemo.VirtualGamePadButton, Assembly-CSharp
-        m_MethodName: SetReverse
+        m_MethodName: SetBrakeReverse
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -564,7 +564,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1005086254175510976}
         m_TargetAssemblyTypeName: CarDemo.VirtualGamePadButton, Assembly-CSharp
-        m_MethodName: SetForward
+        m_MethodName: SetThrottle
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -579,7 +579,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1005086254175510976}
         m_TargetAssemblyTypeName: CarDemo.VirtualGamePadButton, Assembly-CSharp
-        m_MethodName: SetForward
+        m_MethodName: SetThrottle
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
