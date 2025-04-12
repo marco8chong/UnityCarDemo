@@ -5,19 +5,35 @@ namespace CarDemo
     [RequireComponent(typeof(CarPhysicsController))]
     public class CarInputController : MonoBehaviour
     {
+        [SerializeField]
+        [Range(0.1f, 3.0f)]
+        private float _throttlePushingTime = 1.0f;
+
+        [SerializeField]
+        [Range(0.1f, 10.0f)]
+        private float _throttleReleasingTime = 0.5f;
+
+        [SerializeField]
+        [Range(0.1f, 10.0f)]
+        private float _brakePushingTime = 0.5f;
+
+        [SerializeField]
+        [Range(0.1f, 10.0f)]
+        private float _BrakeReleasingTime = 0.5f;
+
+        [SerializeField]
+        [Range(0.1f, 10.0f)]
+        private float _steeringTime = 0.5f;
+
+        [SerializeField]
+        [Range(0.1f, 1.0f)]
+        private float _steeringReturningTime = 0.5f;
+
+        [SerializeField]
+        [Range(0.1f, 2.0f)]
+        private float _handbrakeReleasingTime = 1.0f;
+
         private CarPhysicsController _carPhysicsController;
-
-        private bool _currentForward = false;
-        private bool _lastForward = false;
-
-        private bool _currentReverse = false;
-        private bool _lastReverse = false;
-
-        private bool _currentLeft = false;
-        private bool _lastLeft = false;
-
-        private bool _currentRight = false;
-        private bool _lastRight = false;
 
         private bool _currentHandbrake = false;
         private bool _lastHandbrake = false;
@@ -29,80 +45,71 @@ namespace CarDemo
 
         private void Update()
         {
-            ProcessInput();
+            ProcessDigitalInput();
         }
 
-        private void ProcessInput()
+        private void ProcessDigitalInput()
         {
             GameInputManager gameInputManager = GameDirector.Instance.GameInputManager;
-            _currentForward = gameInputManager.GetForward();
-            _currentReverse = gameInputManager.GetReverse();
-            _currentLeft = gameInputManager.GetLeft();
-            _currentRight = gameInputManager.GetRight();
             _currentHandbrake = gameInputManager.GetHandbrake();
 
-            if (_currentForward)
+            if (gameInputManager.GetThrottle())
             {
-                CancelInvoke("DecelerateCar");
-                _carPhysicsController.DeceleratingCar = false;
-                _carPhysicsController.GoForward();
+                _carPhysicsController.ThrottleAxis += Time.deltaTime / _throttlePushingTime;
+            }
+            else
+            {
+                _carPhysicsController.ThrottleAxis -= Time.deltaTime / _throttleReleasingTime;
             }
 
-            if (_currentReverse)
+            if (gameInputManager.GetBrakeReverse())
             {
-                CancelInvoke("DecelerateCar");
-                _carPhysicsController.DeceleratingCar = false;
-                _carPhysicsController.GoReverse();
+                _carPhysicsController.BrakeAxis += Time.deltaTime / _brakePushingTime;
+            }
+            else
+            {
+                _carPhysicsController.BrakeAxis -= Time.deltaTime / _BrakeReleasingTime;
             }
 
-            if (_currentLeft)
+            if (gameInputManager.GetLeft())
             {
-                _carPhysicsController.TurnLeft();
+                _carPhysicsController.SteeringAxis -= Time.deltaTime / _steeringTime;
             }
 
-            if (_currentRight)
+            if (gameInputManager.GetRight())
             {
-                _carPhysicsController.TurnRight();
+                _carPhysicsController.SteeringAxis += Time.deltaTime / _steeringTime;
             }
 
-            if (_currentHandbrake)
+            if (!(gameInputManager.GetLeft() || gameInputManager.GetRight()))
             {
-                CancelInvoke("DecelerateCar");
-                _carPhysicsController.DeceleratingCar = false;
-                _carPhysicsController.Handbrake();
+                if (_carPhysicsController.SteeringAxis > 0.0f)
+                {
+                    _carPhysicsController.SteeringAxis = Mathf.Clamp(_carPhysicsController.SteeringAxis - Time.deltaTime / _steeringReturningTime, 0.0f, 1.0f);
+                }
+                else
+                {
+                    _carPhysicsController.SteeringAxis = Mathf.Clamp(_carPhysicsController.SteeringAxis + Time.deltaTime / _steeringReturningTime, -1.0f, 0.0f);
+                }
             }
 
-            if (_lastHandbrake && (!_currentHandbrake))
+            if (_currentHandbrake && (!_lastHandbrake))
             {
-                _carPhysicsController.RecoverTraction();
+                _carPhysicsController.HandbrakeAxis = 1.0f;
+            }
+            else
+            {
+                if (_currentHandbrake)
+                {
+                    _carPhysicsController.HandbrakeAxis = Mathf.Clamp(_carPhysicsController.HandbrakeAxis - Time.deltaTime / _handbrakeReleasingTime, 0.5f, 1.0f);
+                }
+                else
+                {
+                    _carPhysicsController.HandbrakeAxis -= Time.deltaTime;
+                }
             }
 
-            if ((!_currentReverse && !_currentForward))
-            {
-                _carPhysicsController.ThrottleOff();
-            }
-
-            if ((!_currentReverse && !_currentForward) && !_currentHandbrake && !_carPhysicsController.DeceleratingCar)
-            {
-                InvokeRepeating("DecelerateCar", 0.0f, 0.1f);
-                _carPhysicsController.DeceleratingCar = true;
-            }
-
-            if (!_currentLeft && !_currentRight && _carPhysicsController.SteeringAxis != 0.0f)
-            {
-                _carPhysicsController.ResetSteeringAngle();
-            }
-
-            _lastForward = _currentForward;
-            _lastReverse = _currentReverse;
-            _lastLeft = _currentLeft;
-            _lastRight = _currentRight;
             _lastHandbrake = _currentHandbrake;
-        }
-
-        private void DecelerateCar()
-        {
-            _carPhysicsController.DecelerateCar();
         }
     }
 }

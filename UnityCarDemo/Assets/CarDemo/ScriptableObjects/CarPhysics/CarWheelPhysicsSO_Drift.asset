@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fb89a9d380c1c43a9d0a89d15a6ea6, type: 3}
-  m_Name: CarWheelPhysicsSO
+  m_Name: CarWheelPhysicsSO_Drift
   m_EditorClassIdentifier: 
   _suspensionSpringSettings:
     Spring: 35000
     Damper: 4500
     TargetPosition: 0.5
   _forwardFrictionSettings:
-    ExtremumSlip: 0.4
-    ExtremumValue: 1
-    AsymptoteSlip: 0.8
-    AsymptoteValue: 0.5
+    ExtremumSlip: 1
+    ExtremumValue: 0.5
+    AsymptoteSlip: 2
+    AsymptoteValue: 0.3
     Stiffness: 1
   _sidewaysFrictionSettings:
-    ExtremumSlip: 0.2
-    ExtremumValue: 1
-    AsymptoteSlip: 0.5
-    AsymptoteValue: 0.75
-    Stiffness: 1
+    ExtremumSlip: 1.2
+    ExtremumValue: 0.5
+    AsymptoteSlip: 2.5
+    AsymptoteValue: 0.3
+    Stiffness: 0.7

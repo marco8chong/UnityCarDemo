@@ -6,10 +6,10 @@ namespace CarDemo
     public class GameInputManager : GameDirectorService
     {
         [SerializeField]
-        private Key _forwardKey = Key.W;
+        private Key _throttleKey = Key.W;
 
         [SerializeField]
-        private Key _reverseKey = Key.S;
+        private Key _brakeReverseKey = Key.S;
 
         [SerializeField]
         private Key _leftKey = Key.A;
@@ -20,20 +20,20 @@ namespace CarDemo
         [SerializeField]
         private Key _handbrakeKey = Key.Space;
 
-        bool _forwardTouch = false;
-        bool _reverseTouch = false;
+        bool _throttleTouch = false;
+        bool _brakeReverseTouch = false;
         bool _leftTouch = false;
         bool _rightTouch = false;
         bool _handbrakeTouch = false;
 
-        public bool GetForward()
+        public bool GetThrottle()
         {
-            return Keyboard.current[_forwardKey].isPressed || _forwardTouch;
+            return Keyboard.current[_throttleKey].isPressed || _throttleTouch;
         }
 
-        public bool GetReverse()
+        public bool GetBrakeReverse()
         {
-            return Keyboard.current[_reverseKey].isPressed || _reverseTouch;
+            return Keyboard.current[_brakeReverseKey].isPressed || _brakeReverseTouch;
         }
 
         public bool GetLeft()
@@ -51,14 +51,14 @@ namespace CarDemo
             return Keyboard.current[_handbrakeKey].isPressed || _handbrakeTouch;
         }
 
-        public void SetForward(bool forward)
+        public void SetThrottle(bool forward)
         {
-            _forwardTouch = forward;
+            _throttleTouch = forward;
         }
 
-        public void SetReverse(bool reverse)
+        public void SetBrakeReverse(bool reverse)
         {
-            _reverseTouch = reverse;
+            _brakeReverseTouch = reverse;
         }
 
         public void SetLeft(bool left)
