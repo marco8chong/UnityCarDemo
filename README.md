@@ -24,11 +24,12 @@ Assets/CarDemo/Scenes/MenuScene
 Control Methods:
 
 Keyboard
-- W - Forward
+- W - Throttle
 - A - Left
-- S - Reverse / Brake
+- S - Brake / Reverse
 - D - Right
-- Space - Drift
+- Space - Handbrake (Drift)
+- E - Car Add-on
 
 Touch
 - Virtual game pad
