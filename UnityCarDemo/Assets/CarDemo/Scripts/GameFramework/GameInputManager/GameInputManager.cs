@@ -21,14 +21,14 @@ namespace CarDemo
         private Key _handbrakeKey = Key.Space;
 
         [SerializeField]
-        private Key _addOnKey = Key.E;
+        private Key _addonKey = Key.E;
 
         bool _throttleTouch = false;
         bool _brakeReverseTouch = false;
         bool _leftTouch = false;
         bool _rightTouch = false;
         bool _handbrakeTouch = false;
-        bool _addOnTouch = false;
+        bool _addonTouch = false;
 
         public bool GetThrottle()
         {
@@ -55,9 +55,9 @@ namespace CarDemo
             return Keyboard.current[_handbrakeKey].isPressed || _handbrakeTouch;
         }
 
-        public bool GetAddOn()
+        public bool GetAddon()
         {
-            return Keyboard.current[_addOnKey].isPressed || _addOnTouch;
+            return Keyboard.current[_addonKey].isPressed || _addonTouch;
         }
 
         public void SetThrottle(bool forward)
@@ -85,9 +85,9 @@ namespace CarDemo
             _handbrakeTouch = handbrake;
         }
 
-        public void SetAddOn(bool addOn)
+        public void SetAddon(bool addOn)
         {
-            _addOnTouch = addOn;
+            _addonTouch = addOn;
         }
     }
 }

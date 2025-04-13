@@ -447,7 +447,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4360423177458875875}
         m_TargetAssemblyTypeName: CarDemo.VirtualGamePadButton, Assembly-CSharp
-        m_MethodName: SetAddOn
+        m_MethodName: SetAddon
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -462,7 +462,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4360423177458875875}
         m_TargetAssemblyTypeName: CarDemo.VirtualGamePadButton, Assembly-CSharp
-        m_MethodName: SetAddOn
+        m_MethodName: SetAddon
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -58,9 +58,9 @@ namespace CarDemo
             GameDirector.Instance.GameInputManager.SetHandbrake(handbrake);
         }
 
-        public void SetAddOn(bool addOn)
+        public void SetAddon(bool addOn)
         {
-            GameDirector.Instance.GameInputManager.SetAddOn(addOn);
+            GameDirector.Instance.GameInputManager.SetAddon(addOn);
         }
     }
 }

@@ -17,8 +17,8 @@ namespace CarDemo
         private bool _currentHandbrake = false;
         private bool _lastHandbrake = false;
 
-        private bool _currentAddOn = false;
-        private bool _lastAddOn = false;
+        private bool _currentAddon = false;
+        private bool _lastAddon = false;
 
         private void Start()
         {
@@ -35,7 +35,7 @@ namespace CarDemo
         {
             GameInputManager gameInputManager = GameDirector.Instance.GameInputManager;
             _currentHandbrake = gameInputManager.GetHandbrake();
-            _currentAddOn = gameInputManager.GetAddOn();
+            _currentAddon = gameInputManager.GetAddon();
 
             if (gameInputManager.GetThrottle())
             {
@@ -93,13 +93,13 @@ namespace CarDemo
                 }
             }
 
-            if (_currentAddOn && (!_lastAddOn))
+            if (_currentAddon && (!_lastAddon))
             {
                 _carAddonController.TriggerAllAddons();
             }
 
             _lastHandbrake = _currentHandbrake;
-            _lastAddOn = _currentAddOn;
+            _lastAddon = _currentAddon;
         }
     }
 }
