@@ -67,6 +67,7 @@ MonoBehaviour:
   _bullet: {fileID: 1496607991545460127, guid: 7b1662c3b6a86754589a754233c8508a, type: 3}
   _firePosition: {fileID: 956442827639069404}
   _firingForce: 25
+  _bulletPoolSize: 30
 --- !u!1 &5580923625765240447
 GameObject:
   m_ObjectHideFlags: 0
