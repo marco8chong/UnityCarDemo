@@ -7,6 +7,9 @@ namespace CarDemo
     public class CarAddonController : MonoBehaviour
     {
         [SerializeField]
+        private bool _clearBeforeInstallation = true;
+
+        [SerializeField]
         private List<CarAddonSlot> _addonSlots = new List<CarAddonSlot>();
 
         public bool InstallAddon(CarAddonBase addon)
@@ -19,6 +22,11 @@ namespace CarDemo
                 {
                     if (slot && !slot.Locked && (slot.SlotType == addon.SlotType))
                     {
+                        if (_clearBeforeInstallation)
+                        {
+                            UninstallAllAddons();
+                        }
+
                         slot.InstallAddon(addon);
                         success = true;
 
