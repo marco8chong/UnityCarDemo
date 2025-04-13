@@ -163,3 +163,21 @@ namespace CarDemo
     }
 }
 ```
+
+# Car Setup
+![My Image](ReadmeImages/CarSetup.jpg)
+
+![My Image](ReadmeImages/CarPhysicsSO.jpg)
+
+![My Image](ReadmeImages/CarWheelPhysicsSO.jpg)
+
+![My Image](ReadmeImages/CarInputSO.jpg)
+
+![My Image](ReadmeImages/CarWheelSetup.jpg)
+
+![My Image](ReadmeImages/CarAddonSetup.jpg)
+
+![My Image](ReadmeImages/CarAddonSlotSetup.jpg)
+
+![My Image](ReadmeImages/CollectableCarAddon.jpg)
+
