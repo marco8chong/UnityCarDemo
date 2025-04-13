@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace CarDemo
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class CarPhysicsController : MonoBehaviour
     {
         public event Action OnCarPhysicsChanged;
@@ -62,7 +63,7 @@ namespace CarDemo
         private ParticleSystem _rrParticleSystem;
 
         // car simulation 
-        private Rigidbody _carRigidbody;
+        private Rigidbody _carRigidbody = null;
 
         private float _carSpeed = 0.0f;
         private float _localVelocityZ = 0.0f;
@@ -76,8 +77,8 @@ namespace CarDemo
         void Start()
         {
             _carRigidbody = gameObject.GetComponent<Rigidbody>();
-            _carRigidbody.mass = _carPhysicsSettings.BodyMass;
-            _carRigidbody.centerOfMass = _carPhysicsSettings.BodyMassCenter;
+            
+            ApplyPhysicsSettings();
 
             DriftParicle(false);
         }
@@ -101,6 +102,7 @@ namespace CarDemo
             set
             {
                 _carPhysicsSettings = value;
+                ApplyPhysicsSettings();
                 OnCarPhysicsChanged?.Invoke();
             }
         }
@@ -307,9 +309,17 @@ namespace CarDemo
             }
         }
 
+        private void ApplyPhysicsSettings()
+        {
+            _carRigidbody.mass = _carPhysicsSettings.BodyMass;
+            _carRigidbody.centerOfMass = _carPhysicsSettings.BodyMassCenter;
+        }
+
         [Button]
         public void ForceUpdatePhysicsSettings()
         {
+            ApplyPhysicsSettings();
+
             OnCarPhysicsChanged?.Invoke();
         }
     }
