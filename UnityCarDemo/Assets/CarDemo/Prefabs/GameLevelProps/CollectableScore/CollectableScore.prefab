@@ -56,7 +56,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1080397614306024, guid: 1f5d98c5ba034a846bb35ff27e18823c, type: 3}
       propertyPath: m_Name
-      value: CollectableScore Variant
+      value: CollectableScore
       objectReference: {fileID: 0}
     - target: {fileID: 4670454539250632, guid: 1f5d98c5ba034a846bb35ff27e18823c, type: 3}
       propertyPath: m_LocalScale.x
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   OnTargetEnter:
     m_PersistentCalls:
       m_Calls:

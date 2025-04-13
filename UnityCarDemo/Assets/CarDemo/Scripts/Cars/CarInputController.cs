@@ -4,6 +4,7 @@ using UnityEngine;
 namespace CarDemo
 {
     [RequireComponent(typeof(CarPhysicsController))]
+    [RequireComponent(typeof(CarAddonController))]
     public class CarInputController : MonoBehaviour
     {
         [SerializeField]
@@ -11,6 +12,7 @@ namespace CarDemo
         private CarInputSO _carInputSettings = null;
 
         private CarPhysicsController _carPhysicsController;
+        private CarAddonController _carAddonController;
 
         private bool _currentHandbrake = false;
         private bool _lastHandbrake = false;
@@ -18,6 +20,7 @@ namespace CarDemo
         private void Start()
         {
             _carPhysicsController = GetComponent<CarPhysicsController>();
+            _carAddonController = GetComponent<CarAddonController>();
         }
 
         private void Update()
