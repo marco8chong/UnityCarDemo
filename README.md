@@ -4,7 +4,7 @@
 
 *** This project is created for job interview only ***
 
-[Watch on YouTube](https://www.youtube.com/watch?v=wJs94ibcN6Y)
+[Watch on YouTube](https://www.youtube.com/watch?v=CLl6i-cxeyY)
 
 ![My Image](ReadmeImages/MainMenuScene.jpg)
 
@@ -24,11 +24,12 @@ Assets/CarDemo/Scenes/MenuScene
 Control Methods:
 
 Keyboard
-- W - Forward
+- W - Throttle
 - A - Left
-- S - Reverse / Brake
+- S - Brake / Reverse
 - D - Right
-- Space - Drift
+- Space - Handbrake (Drift)
+- E - Car Add-on
 
 Touch
 - Virtual game pad
@@ -162,3 +163,21 @@ namespace CarDemo
     }
 }
 ```
+
+# Car Setup
+![My Image](ReadmeImages/CarSetup.jpg)
+
+![My Image](ReadmeImages/CarPhysicsSO.jpg)
+
+![My Image](ReadmeImages/CarWheelPhysicsSO.jpg)
+
+![My Image](ReadmeImages/CarInputSO.jpg)
+
+![My Image](ReadmeImages/CarWheelSetup.jpg)
+
+![My Image](ReadmeImages/CarAddonSetup.jpg)
+
+![My Image](ReadmeImages/CarAddonSlotSetup.jpg)
+
+![My Image](ReadmeImages/CollectableCarAddon.jpg)
+
