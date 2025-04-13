@@ -17,6 +17,9 @@ namespace CarDemo
         private bool _currentHandbrake = false;
         private bool _lastHandbrake = false;
 
+        private bool _currentAddOn = false;
+        private bool _lastAddOn = false;
+
         private void Start()
         {
             _carPhysicsController = GetComponent<CarPhysicsController>();
@@ -32,6 +35,7 @@ namespace CarDemo
         {
             GameInputManager gameInputManager = GameDirector.Instance.GameInputManager;
             _currentHandbrake = gameInputManager.GetHandbrake();
+            _currentAddOn = gameInputManager.GetAddOn();
 
             if (gameInputManager.GetThrottle())
             {
@@ -89,7 +93,13 @@ namespace CarDemo
                 }
             }
 
+            if (_currentAddOn && (!_lastAddOn))
+            {
+                _carAddonController.TriggerAllAddons();
+            }
+
             _lastHandbrake = _currentHandbrake;
+            _lastAddOn = _currentAddOn;
         }
     }
 }
